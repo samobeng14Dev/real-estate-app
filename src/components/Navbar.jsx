@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 const Navbar = () => {
 	return (
-		<nav className='bg-base-200'>
+		<nav className='bg-base-200 shadow-md sticky top-0 z-50'>
 			<div className='navbar align-element'>
 				<div className='navbar-start'>
 					{/* TITLE */}
@@ -22,20 +22,20 @@ const Navbar = () => {
 						</label>
 						<ul
 							tabIndex={0}
-							className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52'>
+							className='menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52'>
 							<NavLinks />
 						</ul>
 					</div>
 				</div>
 				{/* NAV CENTER */}
-				<div className='navbar-center hidden lg:flex'>
-					<ul className='menu menu-horizontal'>
+				<div className='navbar-center hidden lg:flex '>
+					<ul className='menu menu-horizontal '>
 						<NavLinks />
 					</ul>
 				</div>
 				<div className='navbar-end'>
 					{/* THEME SETUP */}
-					<label className='swap swap-rotate'>
+					<label className='swap swap-rotate cursor-pointer'>
 						<input type='checkbox' />
 						{/* sun icon */}
 						<BsSunFill className='swap-on h-4 w-4' />

@@ -24,13 +24,13 @@ const router = createBrowserRouter([
 			},
 			{ path: "/about", element: <About /> },
 			{ path: "offers", element: <Offers /> },
-			{ path: "/forgotPassword", element: <ForgotPassword /> },
 			{ path: "/profile", element: <Profile /> },
 			{ path: "/contact", element: <Contact /> },
 			{ path: "/requestProperty", element: <RequestProperty /> },
 		],
 	},
 
+	{ path: "/forgotPassword", element: <ForgotPassword /> },
 	{ path: "/signIn", element: <SignIn /> },
 	{ path: "/signUp", element: <SignUp /> },
 ]);
