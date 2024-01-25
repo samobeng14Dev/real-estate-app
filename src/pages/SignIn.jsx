@@ -14,6 +14,7 @@ const SignIn = () => {
 	const { email, password } = formData;
 
 	const handleChange = (e) => {
+		e.preventDefault();
 		setFormData((prevState) => ({
 			...prevState,
 			[e.target.id]: e.target.value,

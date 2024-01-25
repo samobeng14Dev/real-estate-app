@@ -1,9 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi";
+import { toast } from "react-toastify";
 import SectionTitle from "../components/SectionTitle";
 import lock from "../assets/lock.jpg";
 import OAuth from "../components/OAuth";
+import {
+	getAuth,
+	createUserWithEmailAndPassword,
+	updateProfile,
+} from "firebase/auth";
+import { db } from "../firebase";
+import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 const SignUp = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [formData, setFormData] = useState({
@@ -11,13 +20,42 @@ const SignUp = () => {
 		email: "",
 		password: "",
 	});
+
 	const { name, email, password } = formData;
+	const navigate = useNavigate();
 
 	const handleChange = (e) => {
+		e.preventDefault();
 		setFormData((prevState) => ({
 			...prevState,
 			[e.target.id]: e.target.value,
 		}));
+	};
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const auth = getAuth();
+			const userCredential = await createUserWithEmailAndPassword(
+				auth,
+				email,
+				password
+			);
+			//add identifier
+			updateProfile(auth.currentUser, {
+				displayName: name,
+			});
+
+			const user = userCredential.user;
+			const formDataCopy = { ...formData };
+			delete formDataCopy.password;
+			formDataCopy.timestamp = serverTimestamp();
+
+			await setDoc(doc(db, "users", user.uid), formDataCopy);
+			navigate("/");
+			toast.success("sign up was successful");
+		} catch (error) {
+			toast.error("please check your credentials");
+		}
 	};
 	return (
 		<>
@@ -31,7 +69,7 @@ const SignUp = () => {
 					/>
 				</div>
 				<div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20'>
-					<form>
+					<form onSubmit={handleSubmit}>
 						<input
 							className='mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out'
 							type='text'

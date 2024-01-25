@@ -8,6 +8,7 @@ const ForgotPassword = () => {
 	const [email, setEmail] = useState("");
 
 	const handleChange = (e) => {
+		e.preventDefault();
 		setEmail(e.target.value);
 	};
 	return (
