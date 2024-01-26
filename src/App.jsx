@@ -24,7 +24,7 @@ const router = createBrowserRouter([
 			},
 			{ path: "/about", element: <About /> },
 			{ path: "offers", element: <Offers /> },
-			{ path: "/profile", element: <Profile /> },
+
 			{ path: "/contact", element: <Contact /> },
 			{ path: "/requestProperty", element: <RequestProperty /> },
 		],
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
 	{ path: "/forgotPassword", element: <ForgotPassword /> },
 	{ path: "/signIn", element: <SignIn /> },
 	{ path: "/signUp", element: <SignUp /> },
+	{ path: "/profile", element: <Profile /> },
 ]);
 const App = () => {
 	return <RouterProvider router={router} />;
