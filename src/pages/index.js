@@ -7,3 +7,4 @@ export { default as Offers } from "./Offers";
 export { default as About } from "./About";
 export { default as Contact } from "./Contact";
 export { default as RequestProperty } from "./RequestProperty";
+export { default as Landing } from "./Landing";

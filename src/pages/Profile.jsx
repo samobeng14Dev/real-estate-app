@@ -1,11 +1,20 @@
+import { getAuth } from "firebase/auth";
 import { useState } from "react";
 import SectionTitle from "../components/SectionTitle";
+import { useNavigate } from "react-router";
+
 const Profile = () => {
+	const auth = getAuth();
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
-		name: "John",
-		email: "john@gmail.com",
+		name: auth.currentUser.displayName,
+		email: auth.currentUser.email,
 	});
 	const { name, email } = formData;
+	const onLogOut = () => {
+		auth.signOut();
+		navigate("/");
+	};
 	return (
 		<>
 			<section className='flex justify-center items-center flex-col'>
@@ -37,7 +46,9 @@ const Profile = () => {
 									Edit
 								</span>
 							</p>
-							<p className='text-blue-600 hover:to-blue-800 transition ease-in-out duration-200 cursor-pointer'>
+							<p
+								onClick={onLogOut}
+								className='text-blue-600 hover:to-blue-800 transition ease-in-out duration-200 cursor-pointer'>
 								Sign out
 							</p>
 						</div>

@@ -9,8 +9,10 @@ import {
 	About,
 	Contact,
 	RequestProperty,
+	Landing,
 } from "./pages";
-import Landing from "./pages/Landing";
+
+import { PrivateRoute } from "./components";
 
 const router = createBrowserRouter([
 	{
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
 	{ path: "/forgotPassword", element: <ForgotPassword /> },
 	{ path: "/signIn", element: <SignIn /> },
 	{ path: "/signUp", element: <SignUp /> },
-	{ path: "/profile", element: <Profile /> },
+	{ path: "/profile", element: <PrivateRoute /> },
 ]);
 const App = () => {
 	return <RouterProvider router={router} />;
