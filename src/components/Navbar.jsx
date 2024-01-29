@@ -10,7 +10,7 @@ const Navbar = () => {
 					{/* TITLE */}
 					<NavLink
 						to='/'
-						className='hidden lg:flex btn btn-primary text-3xl items-center'>
+						className='hidden lg:flex btn btn-secondary text-3xl items-center'>
 						S
 					</NavLink>
 					{/* DROPDOWN */}

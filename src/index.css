@@ -7,3 +7,7 @@
         @apply mx-auto max-w-6xl px-8;
     }
 }
+
+body {
+    background-color: rgb(240, 253, 244);
+}

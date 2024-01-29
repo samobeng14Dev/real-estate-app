@@ -29,13 +29,13 @@ const router = createBrowserRouter([
 
 			{ path: "/contact", element: <Contact /> },
 			{ path: "/requestProperty", element: <RequestProperty /> },
+			{ path: "/profile", element: <PrivateRoute /> },
 		],
 	},
 
 	{ path: "/forgotPassword", element: <ForgotPassword /> },
 	{ path: "/signIn", element: <SignIn /> },
 	{ path: "/signUp", element: <SignUp /> },
-	{ path: "/profile", element: <PrivateRoute /> },
 ]);
 const App = () => {
 	return <RouterProvider router={router} />;

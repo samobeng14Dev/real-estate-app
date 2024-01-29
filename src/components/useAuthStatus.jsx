@@ -8,12 +8,17 @@ export const useAuthStatus = () => {
 	useEffect(() => {
 		const auth = getAuth();
 		console.log(auth);
-		onAuthStateChanged(auth, (user) => {
+		const listener = onAuthStateChanged(auth, (user) => {
 			if (user) {
 				setLoggedIn(true);
 			}
 			setCheckingStatus(false);
 		});
+
+		// Cleanup function to remove listener when component unmounts
+		return () => {
+			listener();
+		};
 	}, []);
 	return { loggedIn, checkingStatus };
 };
