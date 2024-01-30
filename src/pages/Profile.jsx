@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { getAuth, updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
+import { FcHome } from "react-icons/fc";
 import { db } from "../firebase";
 import { useState } from "react";
 import SectionTitle from "../components/SectionTitle";
@@ -11,7 +13,7 @@ const Profile = () => {
 	const navigate = useNavigate();
 	const [changeDetail, setChangeDetail] = useState(false);
 	const [formData, setFormData] = useState({
-		name: auth.currentUser.displayName,
+		name: auth.currentUser.displayName || "",
 		email: auth.currentUser.email,
 	});
 	const { name, email } = formData;
@@ -94,6 +96,16 @@ const Profile = () => {
 							</p>
 						</div>
 					</form>
+					<button
+						type='submit'
+						className='w-full btn btn-secondary uppercase hover:shadow-lg '>
+						<Link
+							to='/createListing'
+							className='flex justify-center items-center'>
+							<FcHome className='mr-2 text-3xl bg-red-300 rounded-full p-1 border-2' />{" "}
+							Sell or rent your home
+						</Link>
+					</button>
 				</div>
 			</section>
 		</>

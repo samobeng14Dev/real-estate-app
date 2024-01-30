@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 const Navbar = () => {
 	return (
-		<nav className='bg-base-200 shadow-md sticky top-0 z-50'>
+		<nav className='bg-white shadow-md sticky top-0 '>
 			<div className='navbar align-element'>
 				<div className='navbar-start'>
 					{/* TITLE */}
@@ -35,7 +35,7 @@ const Navbar = () => {
 				</div>
 				<div className='navbar-end'>
 					{/* THEME SETUP */}
-					<label className='swap swap-rotate cursor-pointer'>
+					<label className='swap swap-rotate cursor-pointer outline-none'>
 						<input type='checkbox' />
 						{/* sun icon */}
 						<BsSunFill className='swap-on h-4 w-4' />

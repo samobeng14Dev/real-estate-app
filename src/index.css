@@ -7,7 +7,12 @@
         @apply mx-auto max-w-6xl px-8;
     }
 }
-
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body {
     background-color: rgb(240, 253, 244);
+    height: 100%;
 }
