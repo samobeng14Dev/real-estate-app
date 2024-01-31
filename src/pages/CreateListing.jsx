@@ -28,7 +28,29 @@ const CreateListing = () => {
 		regularPrice,
 		discountedPrice,
 	} = formData;
-	const handleChange = () => {};
+	const handleChange = (e) => {
+		let boolean = null;
+		if (e.target.value === "true") {
+			boolean = true;
+		}
+		if (e.target.value === "false") {
+			boolean = false;
+		}
+		//files
+		if (e.target.files) {
+			setFormData((prevState) => ({
+				...prevState,
+				images: e.target.files,
+			}));
+		}
+		//text, boolean,number
+		if (!e.target.files) {
+			setFormData((prevState) => ({
+				...prevState,
+				[e.target.id]: boolean ?? e.target.value,
+			}));
+		}
+	};
 	return (
 		<main className='max-w-md px-2 mx-auto'>
 			<SectionTitle text='Create a listing' />
