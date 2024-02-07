@@ -1,7 +1,20 @@
 import { useState } from "react";
+import {
+	getStorage,
+	ref,
+	uploadBytesResumable,
+	getDownloadURL,
+} from "firebase/storage";
+import { v4 as uuidV4 } from "uuid";
 import SectionTitle from "../components/SectionTitle";
+import Loading from "../components/Loading";
+import { toast } from "react-toastify";
+import { getAuth } from "firebase/auth";
 
 const CreateListing = () => {
+	const auth = getAuth();
+	const [geoLocationEnabled, setGeoLocationEnabled] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		type: "rent",
 		name: "",
@@ -14,6 +27,9 @@ const CreateListing = () => {
 		offer: true,
 		regularPrice: "0",
 		discountedPrice: "0",
+		latitude: "0",
+		longitude: "0",
+		images: {},
 	});
 	const {
 		type,
@@ -27,6 +43,9 @@ const CreateListing = () => {
 		offer,
 		regularPrice,
 		discountedPrice,
+		latitude,
+		longitude,
+		images,
 	} = formData;
 	const handleChange = (e) => {
 		let boolean = null;
@@ -51,10 +70,84 @@ const CreateListing = () => {
 			}));
 		}
 	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+		//checks for prices
+		if (discountedPrice >= regularPrice) {
+			setLoading(false);
+			toast.error("Discounted price should be less than regular price");
+			return;
+		}
+		//checks for images
+		if (images.length > 6) {
+			setLoading(false);
+			toast.error("maximum of 6 images are allowed");
+			return;
+		}
+		// let geoLocation = {};
+		// let location;
+		// if (geoLocationEnabled) {
+
+		// }
+		const storeImage = async (image) => {
+			return new Promise((resolve, reject) => {
+				const storage = getStorage();
+				const filename = `${auth.currentUser.uid}-${image.name}-${uuidV4()}`;
+				const storageRef = ref(storage, filename);
+				const uploadTask = uploadBytesResumable(storageRef, image);
+				uploadTask.on(
+					"state_changed",
+					(snapshot) => {
+						// Observe state change events such as progress, pause, and resume
+						// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+						const progress =
+							(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+						console.log("Upload is " + progress + "% done");
+						switch (snapshot.state) {
+							case "paused":
+								console.log("Upload is paused");
+								break;
+							case "running":
+								console.log("Upload is running");
+								break;
+						}
+					},
+					(error) => {
+						// Handle unsuccessful uploads
+						reject(error);
+					},
+					() => {
+						// Handle successful uploads on complete
+						// For instance, get the download URL: https://firebasestorage.googleapis.com/...
+						getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+							resolve(downloadURL);
+						});
+					}
+				);
+			});
+		};
+
+		const imgPromises = [...images].map((image) => storeImage(image));
+
+		try {
+			const imgUrls = await Promise.all(imgPromises);
+		} catch (error) {
+			setLoading(false);
+			toast.error("Images not uploaded");
+		}
+		console.log("imgUrl:", imgUrls);
+		console.log("imgPromises:", imgPromises);
+	};
+
+	if (loading) {
+		return <Loading />;
+	}
 	return (
 		<main className='max-w-md px-2 mx-auto'>
 			<SectionTitle text='Create a listing' />
-			<form>
+			<form onSubmit={handleSubmit}>
 				{/* Sell/Rent */}
 				<p className='text-lg mt-6 font-semibold '>Sell/Rent</p>
 				<div className='flex'>
@@ -120,6 +213,7 @@ const CreateListing = () => {
 							  focus:gray-700 focus:bg-white focus:border-slate-600 text-center'
 						/>
 					</div>
+					{/* Latitude */}
 					<div>
 						<p className='text-lg font-semibold'>Baths</p>
 						<input
@@ -213,6 +307,43 @@ const CreateListing = () => {
                      border-gray-300 rounded transition duration-150 ease-in-out
                       focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6'
 				/>
+				{/*GeoLocation */}
+				{!geoLocationEnabled && (
+					// latitude
+					<div className='flex space-x-6 justify-start mb-6'>
+						<div className=''>
+							<p className='text-lg font-semibold '>Latitude</p>
+							<input
+								type='number'
+								id='latitude'
+								value={latitude}
+								min='-90'
+								max='90'
+								onChange={handleChange}
+								required
+								className='w-full px-4 py-2 text-xl text-gray-700 bg-white border 	
+								border-gray-300 rounded transition duration-150 ease-in-out 
+								focus:bg-white focus:text-gray-700 focus:border-slate-600 text-center'
+							/>
+						</div>
+						{/* longitude */}
+						<div className=''>
+							<p className='text-lg font-semibold '>Longitude</p>
+							<input
+								type='number'
+								id='longitude'
+								value={longitude}
+								min='-180'
+								max='180'
+								onChange={handleChange}
+								required
+								className='w-full px-4 py-2 text-xl text-gray-700 bg-white border 	
+								border-gray-300 rounded transition duration-150 ease-in-out 
+								focus:bg-white focus:text-gray-700 focus:border-slate-600 text-center'
+							/>
+						</div>
+					</div>
+				)}
 				{/* Description */}
 				<p className='text-lg  font-semibold'>Description</p>
 				<textarea
