@@ -5,13 +5,17 @@ import {
 	uploadBytesResumable,
 	getDownloadURL,
 } from "firebase/storage";
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { v4 as uuidV4 } from "uuid";
 import SectionTitle from "../components/SectionTitle";
 import Loading from "../components/Loading";
 import { toast } from "react-toastify";
-import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 const CreateListing = () => {
+	const navigate = useNavigate();
 	const auth = getAuth();
 	const [geoLocationEnabled, setGeoLocationEnabled] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -75,7 +79,7 @@ const CreateListing = () => {
 		e.preventDefault();
 		setLoading(true);
 		//checks for prices
-		if (discountedPrice >= regularPrice) {
+		if (+discountedPrice >= +regularPrice) {
 			setLoading(false);
 			toast.error("Discounted price should be less than regular price");
 			return;
@@ -130,15 +134,26 @@ const CreateListing = () => {
 		};
 
 		const imgPromises = [...images].map((image) => storeImage(image));
-
+		let imgUrls;
 		try {
-			const imgUrls = await Promise.all(imgPromises);
+			imgUrls = await Promise.all(imgPromises);
 		} catch (error) {
 			setLoading(false);
 			toast.error("Images not uploaded");
+			return;
 		}
-		console.log("imgUrl:", imgUrls);
-		console.log("imgPromises:", imgPromises);
+		// form data copy
+		const formDataCopy = {
+			...formData,
+			imgUrls,
+			timestamp: serverTimestamp(),
+		};
+		delete formDataCopy.images;
+		!formDataCopy.offer && delete formDataCopy.discountedPrice;
+		const docRef = await addDoc(collection(db, "listings"), formDataCopy);
+		setLoading(false);
+		toast.success("Listing created");
+		navigate(`/category/${formDataCopy.type}/${docRef.id}`);
 	};
 
 	if (loading) {

@@ -10,6 +10,7 @@ import {
 	Contact,
 	RequestProperty,
 	Landing,
+	Listing,
 	CreateListing,
 } from "./pages";
 
@@ -23,10 +24,12 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
+
 				element: <Landing />,
 			},
 			{ path: "/about", element: <About /> },
-			{ path: "offers", element: <Offers /> },
+			{ path: "/offers", element: <Offers /> },
+			{ path: "/category/:categoryName/:listingId", element: <Listing /> },
 
 			{ path: "/contact", element: <Contact /> },
 			{ path: "/requestProperty", element: <RequestProperty /> },

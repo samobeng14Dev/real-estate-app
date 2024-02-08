@@ -1,17 +1,29 @@
 import { Link } from "react-router-dom";
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
+import {
+	doc,
+	getDocs,
+	orderBy,
+	updateDoc,
+	collection,
+	query,
+	where,
+} from "firebase/firestore";
 import { FcHome } from "react-icons/fc";
 import { db } from "../firebase";
 import { useState } from "react";
 import SectionTitle from "../components/SectionTitle";
+import ListingItem from "../components/ListingItem";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const Profile = () => {
 	const auth = getAuth();
 	const navigate = useNavigate();
 	const [changeDetail, setChangeDetail] = useState(false);
+	const [listings, setListings] = useState(null);
+	const [loading, setLoading] = useState(true);
 	const [formData, setFormData] = useState({
 		name: auth.currentUser.displayName || "",
 		email: auth.currentUser.email,
@@ -48,6 +60,29 @@ const Profile = () => {
 			toast.error("Could not update the profile details");
 		}
 	};
+	// fetch listing from firebase
+	const fetchUserListing = async () => {
+		const listingRef = collection(db, "listings");
+		const q = query(
+			listingRef,
+			where("userRef", "==", auth.currentUser.uid),
+			orderBy("timestamp", "desc")
+		);
+		const querySnap = await getDocs(q);
+		let listings = [];
+		querySnap.forEach((doc) => {
+			return listings.push({
+				id: doc.id,
+				data: doc.data,
+			});
+		});
+		console.log("Listings:", listings); // Add this line
+		setListings(listings);
+		setLoading(false);
+	};
+	useEffect(() => {
+		fetchUserListing();
+	}, [auth.currentUser.uid]);
 	return (
 		<>
 			<section className='flex justify-center items-center flex-col'>
@@ -108,6 +143,24 @@ const Profile = () => {
 					</button>
 				</div>
 			</section>
+			<div className='max-w-6xl px-3 mt-6 mx-auto'>
+				{!loading && listings.length > 0 && (
+					<>
+						<h2 className='text-2xl text-center font-semibold mb-6'>
+							My Listings
+						</h2>
+						<ul className='sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
+							{listings.map((listing) => (
+								<ListingItem
+									key={listing.id}
+									id={listing.id}
+									listing={listing.data}
+								/>
+							))}
+						</ul>
+					</>
+				)}
+			</div>
 		</>
 	);
 };
