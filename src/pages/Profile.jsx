@@ -25,7 +25,7 @@ const Profile = () => {
 	const [listings, setListings] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [formData, setFormData] = useState({
-		name: auth.currentUser.displayName || "",
+		name: auth.currentUser.displayName,
 		email: auth.currentUser.email,
 	});
 	const { name, email } = formData;
@@ -61,27 +61,26 @@ const Profile = () => {
 		}
 	};
 	// fetch listing from firebase
-	const fetchUserListing = async () => {
-		const listingRef = collection(db, "listings");
-		const q = query(
-			listingRef,
-			where("userRef", "==", auth.currentUser.uid),
-			orderBy("timestamp", "desc")
-		);
-		const querySnap = await getDocs(q);
-		let listings = [];
-		querySnap.forEach((doc) => {
-			return listings.push({
-				id: doc.id,
-				data: doc.data,
-			});
-		});
-		console.log("Listings:", listings); // Add this line
-		setListings(listings);
-		setLoading(false);
-	};
 	useEffect(() => {
-		fetchUserListing();
+		async function fetchUserListings() {
+			const listingRef = collection(db, "listings");
+			const q = query(
+				listingRef,
+				where("userRef", "==", auth.currentUser.uid),
+				orderBy("timestamp", "desc")
+			);
+			const querySnap = await getDocs(q);
+			let listings = [];
+			querySnap.forEach((doc) => {
+				return listings.push({
+					id: doc.id,
+					data: doc.data(),
+				});
+			});
+			setListings(listings);
+			setLoading(false);
+		}
+		fetchUserListings();
 	}, [auth.currentUser.uid]);
 	return (
 		<>

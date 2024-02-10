@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 const Navbar = () => {
 	return (
-		<nav className='bg-white shadow-md sticky top-0 '>
+		<nav className='bg-white shadow-md sticky top-0 z-40 '>
 			<div className='navbar align-element'>
 				<div className='navbar-start'>
 					{/* TITLE */}

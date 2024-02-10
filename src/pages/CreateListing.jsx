@@ -95,7 +95,7 @@ const CreateListing = () => {
 		// if (geoLocationEnabled) {
 
 		// }
-		const storeImage = async (image) => {
+		async function storeImage(image) {
 			return new Promise((resolve, reject) => {
 				const storage = getStorage();
 				const filename = `${auth.currentUser.uid}-${image.name}-${uuidV4()}`;
@@ -131,25 +131,25 @@ const CreateListing = () => {
 					}
 				);
 			});
-		};
+		}
 
-		const imgPromises = [...images].map((image) => storeImage(image));
-		let imgUrls;
-		try {
-			imgUrls = await Promise.all(imgPromises);
-		} catch (error) {
+		const imgUrls = await Promise.all(
+			[...images].map((image) => storeImage(image))
+		).catch((error) => {
 			setLoading(false);
 			toast.error("Images not uploaded");
 			return;
-		}
-		// form data copy
+		});
 		const formDataCopy = {
 			...formData,
 			imgUrls,
 			timestamp: serverTimestamp(),
+			userRef: auth.currentUser.uid,
 		};
 		delete formDataCopy.images;
 		!formDataCopy.offer && delete formDataCopy.discountedPrice;
+		delete formDataCopy.latitude;
+		delete formDataCopy.longitude;
 		const docRef = await addDoc(collection(db, "listings"), formDataCopy);
 		setLoading(false);
 		toast.success("Listing created");
