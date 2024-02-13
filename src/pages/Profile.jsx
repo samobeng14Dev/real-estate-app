@@ -5,6 +5,7 @@ import {
 	getDocs,
 	orderBy,
 	updateDoc,
+	deleteDoc,
 	collection,
 	query,
 	where,
@@ -82,6 +83,21 @@ const Profile = () => {
 		}
 		fetchUserListings();
 	}, [auth.currentUser.uid]);
+
+	// edit and delete functions
+	const onEdit = (listingID) => {
+		navigate(`/editListing/${listingID}`);
+	};
+	const onDelete = async (listingID) => {
+		if (window.confirm("Are you sure you want to delete?")) {
+			await deleteDoc(doc(db, "listings", listingID));
+			const updatedListings = listings.filter(
+				(listing) => listing.id !== listingID
+			);
+			setListings(updatedListings);
+			toast.success(" Listing successfully deleted");
+		}
+	};
 	return (
 		<>
 			<section className='flex justify-center items-center flex-col'>
@@ -154,6 +170,8 @@ const Profile = () => {
 									key={listing.id}
 									id={listing.id}
 									listing={listing.data}
+									onEdit={() => onEdit(listing.id)}
+									onDelete={() => onDelete(listing.id)}
 								/>
 							))}
 						</ul>

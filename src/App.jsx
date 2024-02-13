@@ -12,6 +12,7 @@ import {
 	Landing,
 	Listing,
 	CreateListing,
+	EditListing,
 } from "./pages";
 
 import { PrivateRoute } from "./components";
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
 			{ path: "/requestProperty", element: <RequestProperty /> },
 			{ path: "/profile", element: <PrivateRoute /> },
 			{ path: "/createListing", element: <CreateListing /> },
+			{ path: "/editListing/:listingId", element: <EditListing /> },
 		],
 	},
 
