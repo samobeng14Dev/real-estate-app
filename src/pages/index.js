@@ -9,5 +9,5 @@ export { default as Contact } from "./Contact";
 export { default as RequestProperty } from "./RequestProperty";
 export { default as Landing } from "./Landing";
 export { default as CreateListing } from "./CreateListing";
-export { default as Listing } from "./CreateListing";
+export { default as Listing } from "./Listing";
 export { default as EditListing } from "./EditListing";

@@ -63,7 +63,7 @@ const Profile = () => {
 	};
 	// fetch listing from firebase
 	useEffect(() => {
-		async function fetchUserListings() {
+		const fetchUserListings = async () => {
 			const listingRef = collection(db, "listings");
 			const q = query(
 				listingRef,
@@ -80,7 +80,7 @@ const Profile = () => {
 			});
 			setListings(listings);
 			setLoading(false);
-		}
+		};
 		fetchUserListings();
 	}, [auth.currentUser.uid]);
 
