@@ -42,6 +42,16 @@ import React from "react";
 
 function PauseOnHover() {
 	return <div>PauseOnHover</div>;
+// 	.slick-slide img {
+//   display: inline-block;
+// }
+
+// .slick-prev::before {
+//   color: var(--primary-500) !important;
+// }
+// .slick-next::before {
+//   color: var(--primary-500) !important;
+// }
 }
 
 export default PauseOnHover;
