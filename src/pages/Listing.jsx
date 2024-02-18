@@ -23,6 +23,7 @@ const Listing = () => {
 	const [loading, setLoading] = useState(true);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [shareCopiedLink, setShareCopiedLink] = useState(false);
+	const [contactLandlord, setContactLandlord] = useState(false);
 
 	useEffect(() => {
 		const fetchListing = async () => {
@@ -175,8 +176,8 @@ const Listing = () => {
 						/>
 					)}
 				</div>
-				<div className='w-full h-[200px] md:h-[400px] z-10 overflow-x-hidden mt-6 md:mt-0 md:ml-2'>
-					<MapContainer
+				<div className='w-full bg-pink-300 h-[200px] md:h-[400px] z-10 overflow-x-hidden mt-6 md:mt-0 md:ml-2'>
+					{/* <MapContainer
 						center={[listing.geolocation.lat, listing.geolocation.lng]}
 						zoom={13}
 						scrollWheelZoom={false}
@@ -189,7 +190,7 @@ const Listing = () => {
 							position={[listing.geolocation.lat, listing.geolocation.lng]}>
 							<Popup>{listing.address}</Popup>
 						</Marker>
-					</MapContainer>
+					</MapContainer> */}
 				</div>
 			</div>
 		</main>
