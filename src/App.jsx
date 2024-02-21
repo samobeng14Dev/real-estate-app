@@ -35,8 +35,15 @@ const router = createBrowserRouter([
 			{ path: "/contact", element: <Contact /> },
 			{ path: "/requestProperty", element: <RequestProperty /> },
 			{ path: "/profile", element: <PrivateRoute /> },
-			{ path: "/createListing", element: <CreateListing /> },
-			{ path: "/editListing/:listingId", element: <EditListing /> },
+			// { path: "/createListing", element: <CreateListing /> },
+			{
+				path: "/createListing",
+				element: <PrivateRoute element={<CreateListing />} />,
+			},
+			{
+				path: "/editListing/:listingId",
+				element: <PrivateRoute element={<EditListing />} />,
+			},
 		],
 	},
 
