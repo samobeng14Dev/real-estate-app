@@ -41,6 +41,7 @@ const Listing = () => {
 	if (loading || !listing || !listing.imgUrls) {
 		return <Loading />;
 	}
+	
 	const prevSlide = () => {
 		const isFirstSlide = currentIndex === 0;
 		const newIndex = isFirstSlide
