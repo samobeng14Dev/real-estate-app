@@ -2,7 +2,15 @@ import { BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
+import { useDispatch } from "react-redux";
+import { toggleTheme } from "../feature/toggle/toggleSlice";
 const Navbar = () => {
+	const dispatch = useDispatch();
+	const handleTheme = () => {
+		dispatch(toggleTheme());
+	};
+	// const theme = useSelector((state) => state.toggleState.theme);
+
 	return (
 		<nav className='bg-white shadow-md sticky top-0 z-40 '>
 			<div className='navbar align-element'>
@@ -36,7 +44,10 @@ const Navbar = () => {
 				<div className='navbar-end'>
 					{/* THEME SETUP */}
 					<label className='swap swap-rotate cursor-pointer outline-none'>
-						<input type='checkbox' />
+						<input
+							type='checkbox'
+							onChange={handleTheme}
+						/>
 						{/* sun icon */}
 						<BsSunFill className='swap-on h-4 w-4' />
 						{/* moon icon */}

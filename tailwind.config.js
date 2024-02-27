@@ -5,4 +5,19 @@ export default {
 		extend: {},
 	},
 	plugins: [require("daisyui"), require("@tailwindcss/forms")],
+	daisyui: {
+		themes: [
+			"winter",
+			"dracula",
+			"cyberpunk",
+			"retro",
+			"forest",
+			"valentine",
+			"sunset",
+			"aqua",
+			"nord",
+			"black",
+			"light",
+		],
+	},
 };

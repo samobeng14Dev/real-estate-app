@@ -24,7 +24,7 @@ const Listing = () => {
 	const [loading, setLoading] = useState(true);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [shareCopiedLink, setShareCopiedLink] = useState(false);
-	const [contactLandlord, setContactLandlord] = useState(false);
+	const [contactLandlord, setContactLandlord] = useState(true);
 
 	useEffect(() => {
 		const fetchListing = async () => {
@@ -41,7 +41,7 @@ const Listing = () => {
 	if (loading || !listing || !listing.imgUrls) {
 		return <Loading />;
 	}
-	
+
 	const prevSlide = () => {
 		const isFirstSlide = currentIndex === 0;
 		const newIndex = isFirstSlide
