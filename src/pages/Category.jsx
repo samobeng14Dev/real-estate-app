@@ -11,18 +11,19 @@ import {
 } from "firebase/firestore"; // Import startAfter and limit
 import { db } from "../firebase";
 import { Loading, ListingItem } from "../components"; // Assuming ListingItem is imported from another file
+import { useParams } from "react-router";
 
-const Offers = () => {
+const Category = () => {
 	const [listings, setListings] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [lastFetchedListing, setLastFetchedListing] = useState(null);
-
+	const params = useParams();
 	const fetchListings = async () => {
 		try {
 			const listingRef = collection(db, "listings");
 			const q = query(
 				listingRef,
-				where("offer", "==", true),
+				where("type", "==", params.categoryName),
 				orderBy("timestamp", "desc"),
 				limit(8)
 			);
@@ -55,7 +56,7 @@ const Offers = () => {
 			const listingRef = collection(db, "listings");
 			const q = query(
 				listingRef,
-				where("offer", "==", true),
+				where("type", "==", params.categoryName),
 				orderBy("timestamp", "desc"),
 				startAfter(lastFetchedListing),
 				limit(4)
@@ -84,11 +85,13 @@ const Offers = () => {
 
 	useEffect(() => {
 		fetchListings();
-	}, []);
+	}, [params.categoryName]);
 
 	return (
 		<div className='max-w-6xl mx-auto px-3'>
-			<h1 className='text-3xl text-center mt-6 font-bold mb-6'>Offers</h1>
+			<h1 className='text-3xl text-center mt-6 font-bold mb-6'>
+				{params.categoryName === "rent" ? "Places for rent" : "Places for sale"}
+			</h1>
 			{loading ? (
 				<Loading />
 			) : listings.length > 0 ? (
@@ -121,4 +124,4 @@ const Offers = () => {
 	);
 };
 
-export default Offers;
+export default Category;

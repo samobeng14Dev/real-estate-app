@@ -13,6 +13,7 @@ import {
 	Listing,
 	CreateListing,
 	EditListing,
+	Category,
 } from "./pages";
 
 import { PrivateRoute } from "./components";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
 			},
 			{ path: "/about", element: <About /> },
 			{ path: "/offers", element: <Offers /> },
+			{ path: "/category/:categoryName", element: <Category /> },
 			{ path: "/category/:categoryName/:listingId", element: <Listing /> },
 
 			{ path: "/contact", element: <Contact /> },

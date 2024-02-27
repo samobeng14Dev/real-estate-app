@@ -158,7 +158,7 @@ const Landing = () => {
 							Places for sale
 						</h2>
 						<Link to='/category/sale'>
-							<p className='px-3 text-sm pink-blue-300 hover:text-pink-500 transition duration-150 ease-in-out'>
+							<p className='px-3 text-sm text-pink-300 hover:text-pink-500 transition duration-150 ease-in-out'>
 								Show more places for sale
 							</p>
 						</Link>
