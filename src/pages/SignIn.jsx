@@ -14,12 +14,12 @@ const SignIn = () => {
 	});
 	const { email, password } = formData;
 	const navigate = useNavigate();
-	function onChange(e) {
+	const onChange = (e) => {
 		setFormData((prevState) => ({
 			...prevState,
 			[e.target.id]: e.target.value,
 		}));
-	}
+	};
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		try {

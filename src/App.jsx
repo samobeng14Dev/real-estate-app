@@ -47,12 +47,11 @@ const router = createBrowserRouter([
 			// 	path: "/editListing/:listingId",
 			// 	element: <PrivateRoute element={<EditListing />} />,
 			// },
+			{ path: "/forgotPassword", element: <ForgotPassword /> },
+			{ path: "/signIn", element: <SignIn /> },
+			{ path: "/signUp", element: <SignUp /> },
 		],
 	},
-
-	{ path: "/forgotPassword", element: <ForgotPassword /> },
-	{ path: "/signIn", element: <SignIn /> },
-	{ path: "/signUp", element: <SignUp /> },
 ]);
 const App = () => {
 	return <RouterProvider router={router} />;

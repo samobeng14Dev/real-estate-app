@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const OAuth = () => {
 	const navigate = useNavigate();
-	async function onGoogleClick() {
+	const onGoogleClick = async () => {
 		try {
 			const auth = getAuth();
 			const provider = new GoogleAuthProvider();
@@ -32,7 +32,7 @@ const OAuth = () => {
 			toast.error("Could not authorize with Google");
 			console.log(error);
 		}
-	}
+	};
 	return (
 		<button
 			type='button'
