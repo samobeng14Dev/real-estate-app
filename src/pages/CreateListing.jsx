@@ -140,6 +140,7 @@ const CreateListing = () => {
 			toast.error("Images not uploaded");
 			return;
 		});
+
 		const formDataCopy = {
 			...formData,
 			imgUrls,
@@ -152,7 +153,7 @@ const CreateListing = () => {
 		delete formDataCopy.longitude;
 		const docRef = await addDoc(collection(db, "listings"), formDataCopy);
 		setLoading(false);
-		toast.success("Listing edited");
+		toast.success("Listing created");
 		navigate(`/category/${formDataCopy.type}/${docRef.id}`);
 	};
 
