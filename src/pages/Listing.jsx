@@ -144,7 +144,7 @@ const Listing = () => {
 						{listing.description}
 					</p>
 					{/* LISTING AMENITIES */}
-					<ul className='flex flex-wrap overflow-hidden items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6'>
+					<ul className='flex overflow-hidden items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6'>
 						<li className='flex items-center '>
 							<FaBed className='text-lg mr-1' />
 							{+listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : "1 Bed"}
