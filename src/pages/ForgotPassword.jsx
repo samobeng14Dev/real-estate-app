@@ -25,6 +25,7 @@ const ForgotPassword = () => {
 	};
 	return (
 		<>
+			<SectionTitle text='forgot password' />
 			<div className='flex justify-center flex-wrap items-center px-6 py-12 mt-10'>
 				<div className='md:w-[67%] lg:w-[50%] mb-12 md:mb-6'>
 					<img
