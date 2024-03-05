@@ -10,9 +10,9 @@ const ForgotPassword = () => {
 	const [email, setEmail] = useState("");
 
 	const handleChange = (e) => {
-		e.preventDefault();
 		setEmail(e.target.value);
 	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -23,34 +23,35 @@ const ForgotPassword = () => {
 			toast.error("Could not send reset password");
 		}
 	};
+
 	return (
 		<>
-			<SectionTitle text='forgot password' />
-			<div className='flex justify-center flex-wrap items-center px-6 py-12 mt-10'>
-				<div className='md:w-[67%] lg:w-[50%] mb-12 md:mb-6'>
+			<SectionTitle text='Forgot Password' />
+			<div className='flex justify-center flex-wrap items-center px-4 md:px-6 py-12 mt-10'>
+				<div className='w-full md:w-1/2 mb-6 md:mb-0'>
 					<img
 						className='w-full rounded-2xl'
 						src={lock}
 						alt='key'
 					/>
 				</div>
-				<div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20 ml-4'>
+				<div className='w-full md:w-1/2 lg:ml-20 ml-4'>
 					<form onSubmit={handleSubmit}>
 						<input
-							className='mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out'
+							className='mb-4 md:mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out'
 							type='email'
 							id='email'
 							value={email}
 							onChange={handleChange}
-							placeholder='email address'
+							placeholder='Email address'
 						/>
 
-						<div className='flex justify-between whitespace-nowrap text-sm sm:text-lg'>
-							<p className='mb-6 '>
-								Don't have an account yet?
+						<div className='flex justify-between whitespace-nowrap text-sm sm:text-lg mb-4 md:mb-6'>
+							<p>
+								Don't have an account yet?{" "}
 								<Link
 									to='signUp'
-									className='text-red-600 hover:text-red-700 transition duration-200 ease-in-out ml-1 mr-2'>
+									className='text-red-600 hover:text-red-700 transition duration-200 ease-in-out mr-1'>
 									Register
 								</Link>
 							</p>
@@ -63,11 +64,11 @@ const ForgotPassword = () => {
 							</p>
 						</div>
 						<button
-							className='btn w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-900 shadow-md hover:shadow-lg uppercase text-white '
+							className='btn w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-900 shadow-md hover:shadow-lg uppercase text-white mb-4 md:mb-6'
 							type='submit'>
 							Send reset password
 						</button>
-						<div className=' flex items-center my-4 before:border-t before:flex-1  before:border-gray-300 after:border-t after:flex-1  after:border-gray-300'>
+						<div className='flex items-center my-2 before:border-t before:flex-1  before:border-gray-300 after:border-t after:flex-1  after:border-gray-300'>
 							<p className='text-center font-semibold mx-4'>OR</p>
 						</div>
 						<OAuth />
