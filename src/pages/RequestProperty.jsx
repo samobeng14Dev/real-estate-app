@@ -3,12 +3,16 @@ import React, { useState } from "react";
 const RequestProperty = () => {
 	const [fullName, setFullName] = useState("");
 	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
 	const [message, setMessage] = useState("");
+
+	const propertyOwnerEmail = "samo@gmail.com";
+	const propertyOwnerName = "Samo";
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		// Here you can implement your logic to send the request to the property owner
-		console.log("Request submitted:", { fullName, email, message });
+		console.log("Request submitted:", { fullName, email, phone, message });
 		// You can also add further logic like validation before submitting the request
 	};
 
@@ -51,6 +55,21 @@ const RequestProperty = () => {
 					</div>
 					<div>
 						<label
+							htmlFor='phone'
+							className='block text-lg font-medium'>
+							Phone Number
+						</label>
+						<input
+							type='tel'
+							id='phone'
+							className='w-full border-gray-300 rounded-md p-2'
+							value={phone}
+							onChange={(e) => setPhone(e.target.value)}
+							required
+						/>
+					</div>
+					<div>
+						<label
 							htmlFor='message'
 							className='block text-lg font-medium'>
 							Message
@@ -64,11 +83,13 @@ const RequestProperty = () => {
 							required></textarea>
 					</div>
 					<div>
-						<button
-							type='submit'
-							className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300'>
+						<a
+							href={`mailto:${propertyOwnerEmail}?Subject=${propertyOwnerName}&body=${message}%0D%0APhone:%20${phone}`}
+							className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300'
+							target='_blank'
+							rel='noopener noreferrer'>
 							Submit Request
-						</button>
+						</a>
 					</div>
 				</form>
 			</div>
