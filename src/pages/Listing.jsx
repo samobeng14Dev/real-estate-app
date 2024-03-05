@@ -144,20 +144,20 @@ const Listing = () => {
 						{listing.description}
 					</p>
 					{/* LISTING AMENITIES */}
-					<ul className='flex overflow-hidden items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6'>
-						<li className='flex items-center '>
+					<ul className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4  items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6'>
+						<li className='grid items-center '>
 							<FaBed className='text-lg mr-1' />
 							{+listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : "1 Bed"}
 						</li>
-						<li className='flex items-center '>
+						<li className='grid items-center '>
 							<FaBath className='text-lg mr-1' />
 							{+listing.bathrooms > 1 ? `${listing.bathrooms} Baths` : "1 Bath"}
 						</li>
-						<li className='flex items-center'>
+						<li className='grid items-center'>
 							<FaParking className='text-lg mr-1' />
 							{listing.parking ? "Parking spot" : "No parking"}
 						</li>
-						<li className='flex items-center '>
+						<li className='grid items-center '>
 							<FaChair className='text-lg mr-1' />
 							{listing.furnished ? "Furnished" : "Not furnished"}
 						</li>
