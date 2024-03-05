@@ -99,7 +99,7 @@ export default function Slider() {
 				</div>
 			))} */}
 
-			<div className='carousel w-full'>
+			<div className='carousel w-full '>
 				<div
 					id='slide1'
 					className='carousel-item relative w-full'>
@@ -123,7 +123,7 @@ export default function Slider() {
 				</div>
 				<div
 					id='slide2'
-					className='carousel-item relative w-full'>
+					className='carousel-item relative w-full '>
 					<img
 						src='https://daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg'
 						className='w-full'

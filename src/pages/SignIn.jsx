@@ -50,7 +50,7 @@ const SignIn = () => {
 						className='w-full md:max-w-md rounded-2xl'
 					/>
 				</div>
-				<div className='md:w-1/2 md:ml-8'>
+				<div className='md:w-1/2 md:ml-8 mt-3'>
 					<form
 						onSubmit={onSubmit}
 						className='max-w-sm mx-auto'>
