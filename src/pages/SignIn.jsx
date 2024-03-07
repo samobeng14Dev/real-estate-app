@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import lock from "../assets/lock.jpg";
-import OAuth from "../components/OAuth";
 
 const SignIn = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -14,14 +14,12 @@ const SignIn = () => {
 	});
 	const { email, password } = formData;
 	const navigate = useNavigate();
-
 	const onChange = (e) => {
 		setFormData((prevState) => ({
 			...prevState,
 			[e.target.id]: e.target.value,
 		}));
 	};
-
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -38,22 +36,19 @@ const SignIn = () => {
 			toast.error("Bad user credentials");
 		}
 	};
-
 	return (
-		<section className='h-screen flex flex-col justify-center items-center'>
+		<section className='h-screen grid place-items-center'>
 			<h1 className='text-3xl text-center mt-6 font-bold'>Sign In</h1>
-			<div className='flex flex-col md:flex-row mt-6 mx-4 md:mx-0'>
-				<div className='md:w-1/2 flex justify-center'>
+			<div className='flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto'>
+				<div className='md:w-[67%] lg:w-[50%] mb-12 md:mb-6'>
 					<img
 						src={lock}
 						alt='key'
-						className='w-full md:max-w-md rounded-2xl'
+						className='w-full rounded-2xl'
 					/>
 				</div>
-				<div className='md:w-1/2 md:ml-8 mt-3'>
-					<form
-						onSubmit={onSubmit}
-						className='max-w-sm mx-auto'>
+				<div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20'>
+					<form onSubmit={onSubmit}>
 						<input
 							type='email'
 							id='email'
@@ -85,7 +80,7 @@ const SignIn = () => {
 						</div>
 						<div className='flex justify-between whitespace-nowrap text-sm sm:text-lg'>
 							<p className='mb-6'>
-								Don't have an account?{" "}
+								Don't have a account?
 								<Link
 									to='/signUp'
 									className='text-red-600 hover:text-red-700 transition duration-200 ease-in-out ml-1'>
@@ -95,7 +90,7 @@ const SignIn = () => {
 							<p>
 								<Link
 									to='/forgotPassword'
-									className='text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out ml-1'>
+									className='text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out'>
 									Forgot password?
 								</Link>
 							</p>
@@ -115,5 +110,4 @@ const SignIn = () => {
 		</section>
 	);
 };
-
 export default SignIn;

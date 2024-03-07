@@ -1,22 +1,17 @@
 import { useState } from "react";
-import Slider from "../components/Slider";
-
 import { BsFillGridFill, BsList } from "react-icons/bs";
-import { LayoutGrid, LayoutList } from "../components";
 
-const Landing = () => {
+const Layout = () => {
 	const [layout, setLayout] = useState("grid");
 	const setActiveStyles = (pattern) => {
 		return `text-xl btn btn-circle btn-sm ${
 			pattern === layout
-				? "btn-secondary text-primary-content"
+				? "btn-primary text-primary-content"
 				: "btn-ghost text-based-content"
 		}`;
 	};
-
 	return (
 		<>
-			<Slider />
 			{/* HEADER */}
 			<div className='flex justify-between items-center mt-8 border-b border-base-300 pb-5'>
 				<h4 className='font-medium text-medium'>Welcome to Samo Estates</h4>
@@ -35,9 +30,8 @@ const Landing = () => {
 					</button>
 				</div>
 			</div>
-			<div>{layout === "grid" ? <LayoutGrid /> : <LayoutList />}</div>
 		</>
 	);
 };
 
-export default Landing;
+export default Layout;

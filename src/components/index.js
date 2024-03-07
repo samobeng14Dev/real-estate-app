@@ -4,3 +4,6 @@ export { default as Loading } from "./Loading";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as ListingItem } from "./ListingItem";
 export { default as ContactLandLord } from "./ContactLandLord";
+export { default as Layout } from "./Layout";
+export { default as LayoutGrid } from "./LayoutGrid";
+export { default as LayoutList } from "./LayoutList";
