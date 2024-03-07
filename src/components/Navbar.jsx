@@ -4,22 +4,12 @@ import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../feature/toggle/toggleSlice";
-import { useState } from "react";
-
 const Navbar = () => {
-	const [dropDownOpen, setIsDropDownClose] = useState(true);
 	const dispatch = useDispatch();
 	const handleTheme = () => {
 		dispatch(toggleTheme());
 	};
-
-	const hideDropdown = () => {
-		setIsDropDownClose(!dropDownOpen);
-	};
-
-	const closeDropdown = () => {
-		setIsDropDownClose(false);
-	};
+	// const theme = useSelector((state) => state.toggleState.theme);
 
 	return (
 		<nav className='bg-white shadow-md sticky top-0 z-40 '>
@@ -36,16 +26,11 @@ const Navbar = () => {
 						<label
 							tabIndex={0}
 							className='btn btn-ghost lg:hidden'>
-							<FaBarsStaggered
-								className='h6 w-6'
-								onClick={hideDropdown}
-							/>
+							<FaBarsStaggered className='h6 w-6' />
 						</label>
 						<ul
-							onClick={hideDropdown}
-							className={`menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52 ${
-								dropDownOpen ? "" : "hidden"
-							}`}>
+							tabIndex={0}
+							className='menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52'>
 							<NavLinks />
 						</ul>
 					</div>
