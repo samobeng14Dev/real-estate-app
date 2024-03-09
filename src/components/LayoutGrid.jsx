@@ -106,7 +106,7 @@ const LayoutGrid = () => {
 		fetchListings();
 	}, []);
 	return (
-		<div className='pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-2'>
+		<div className='pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
 			{offerListings && offerListings.length > 0 && (
 				<div className='m-2 mb-6'>
 					<h2 className='px-3 text-2xl mt-6 font-semibold'>Recent offers</h2>

@@ -105,7 +105,7 @@ const LayoutList = () => {
 		fetchListings();
 	}, []);
 	return (
-		<div className='mt-12 grid gap-y-8'>
+		<div className='mt-12 grid gap-y-8 '>
 			{offerListings && offerListings.length > 0 && (
 				<div className='m-2 mb-6'>
 					<h2 className='px-3 text-2xl mt-6 font-semibold'>Recent offers</h2>
@@ -115,7 +115,7 @@ const LayoutList = () => {
 						</p>
 					</Link>
 					{/* loop through offers */}
-					<ul className='p-8 rounded-lg flex flex-col sm:flex-row lg:flex-row gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group'>
+					<ul className='p-8 rounded-lg flex flex-col sm:flex-row lg:flex-col gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group'>
 						{offerListings.map((listing) => (
 							<ListingItem
 								key={listing.id}
@@ -134,7 +134,7 @@ const LayoutList = () => {
 							Show more places for rent
 						</p>
 					</Link>
-					<ul className='p-8 rounded-lg flex flex-col sm:flex-row gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group '>
+					<ul className='p-8 rounded-lg flex flex-col sm:flex-row lg:flex-col gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group '>
 						{rentListings.map((listing) => (
 							<ListingItem
 								key={listing.id}
@@ -153,7 +153,7 @@ const LayoutList = () => {
 							Show more places for sale
 						</p>
 					</Link>
-					<ul className='p-8 rounded-lg flex flex-col sm:flex-row gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group'>
+					<ul className='p-8 rounded-lg flex flex-col sm:flex-row lg:flex-col gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group'>
 						{saleListings.map((listing) => (
 							<ListingItem
 								key={listing.id}

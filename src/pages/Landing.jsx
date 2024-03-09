@@ -5,7 +5,7 @@ import { BsFillGridFill, BsList } from "react-icons/bs";
 import { LayoutGrid, LayoutList } from "../components";
 
 const Landing = () => {
-	const [layout, setLayout] = useState("list");
+	const [layout, setLayout] = useState("grid");
 	const setActiveStyles = (pattern) => {
 		return `text-xl btn btn-circle btn-sm ${
 			pattern === layout
