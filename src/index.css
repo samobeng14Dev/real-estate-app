@@ -13,7 +13,7 @@
     box-sizing: border-box;
 }
 html,body {
-    background-color: rgb(240, 253, 244);
+    background-color: rgba(254, 254, 254, 0.82)
    
 }
 html::-webkit-scrollbar{

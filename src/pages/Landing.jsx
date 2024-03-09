@@ -5,7 +5,7 @@ import { BsFillGridFill, BsList } from "react-icons/bs";
 import { LayoutGrid, LayoutList } from "../components";
 
 const Landing = () => {
-	const [layout, setLayout] = useState("grid");
+	const [layout, setLayout] = useState("list");
 	const setActiveStyles = (pattern) => {
 		return `text-xl btn btn-circle btn-sm ${
 			pattern === layout
@@ -19,8 +19,10 @@ const Landing = () => {
 			<Slider />
 			{/* HEADER */}
 			<div className='flex justify-between items-center mt-8 border-b border-base-300 pb-5'>
-				<h4 className='font-medium text-medium'>Welcome to Samo Estates</h4>
-				<div className='flex gap-x-2'>
+				<h4 className='text-center items-center lg:font-medium text-medium'>
+					Welcome to Samo Estates
+				</h4>
+				<div className='hidden sm:flex md:flex lg:flex gap-x-2 '>
 					<button
 						type='button'
 						onClick={() => setLayout("grid")}

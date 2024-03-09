@@ -106,7 +106,7 @@ const LayoutGrid = () => {
 		fetchListings();
 	}, []);
 	return (
-		<div className='pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-1'>
+		<div className='pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-2'>
 			{offerListings && offerListings.length > 0 && (
 				<div className='m-2 mb-6'>
 					<h2 className='px-3 text-2xl mt-6 font-semibold'>Recent offers</h2>
@@ -116,7 +116,7 @@ const LayoutGrid = () => {
 						</p>
 					</Link>
 					{/* loop through offers */}
-					<ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+					<ul className='card w-full shadow-xl hover:shadow-2xl transition duration-300'>
 						{offerListings.map((listing) => (
 							<ListingItem
 								key={listing.id}
@@ -135,7 +135,7 @@ const LayoutGrid = () => {
 							Show more places for rent
 						</p>
 					</Link>
-					<ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+					<ul className='card w-full shadow-xl hover:shadow-2xl transition duration-300 '>
 						{rentListings.map((listing) => (
 							<ListingItem
 								key={listing.id}
@@ -154,7 +154,7 @@ const LayoutGrid = () => {
 							Show more places for sale
 						</p>
 					</Link>
-					<ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+					<ul className='card w-full shadow-xl hover:shadow-2xl transition duration-300 '>
 						{saleListings.map((listing) => (
 							<ListingItem
 								key={listing.id}

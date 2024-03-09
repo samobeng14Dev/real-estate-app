@@ -115,7 +115,7 @@ const LayoutList = () => {
 						</p>
 					</Link>
 					{/* loop through offers */}
-					<ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+					<ul className='p-8 rounded-lg flex flex-col sm:flex-row lg:flex-row gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group'>
 						{offerListings.map((listing) => (
 							<ListingItem
 								key={listing.id}
@@ -134,7 +134,7 @@ const LayoutList = () => {
 							Show more places for rent
 						</p>
 					</Link>
-					<ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+					<ul className='p-8 rounded-lg flex flex-col sm:flex-row gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group '>
 						{rentListings.map((listing) => (
 							<ListingItem
 								key={listing.id}
@@ -153,7 +153,7 @@ const LayoutList = () => {
 							Show more places for sale
 						</p>
 					</Link>
-					<ul className='sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+					<ul className='p-8 rounded-lg flex flex-col sm:flex-row gap-y-4 flex-wrap bg-base-100 shadow-xl hover:shadow-2xl duration-300 group'>
 						{saleListings.map((listing) => (
 							<ListingItem
 								key={listing.id}

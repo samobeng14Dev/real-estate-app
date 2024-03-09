@@ -41,9 +41,9 @@ const Navbar = () => {
 						<NavLinks />
 					</ul>
 				</div>
-				<div className='navbar-end'>
+				<div className='navbar-end '>
 					{/* THEME SETUP */}
-					<label className='swap swap-rotate cursor-pointer outline-none'>
+					<label className='swap swap-rotate'>
 						<input
 							type='checkbox'
 							onChange={handleTheme}
