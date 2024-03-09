@@ -19,7 +19,7 @@ const Landing = () => {
 			<Slider />
 			{/* HEADER */}
 			<div className='flex justify-between items-center mt-8 border-b border-base-300 pb-5'>
-				<h4 className='text-center items-center lg:font-medium text-medium'>
+				<h4 className='ml-20 text-xl lg:font-medium text-medium'>
 					Welcome to Samo Estates
 				</h4>
 				<div className='hidden sm:flex md:flex lg:flex gap-x-2 '>
