@@ -26,16 +26,16 @@ const ForgotPassword = () => {
 
 	return (
 		<>
-			<SectionTitle text='Forgot Password' />
-			<div className='flex justify-center flex-wrap items-center px-4 md:px-6 py-12 mt-10'>
-				<div className='w-full md:w-1/2 mb-6 md:mb-0'>
+			<SectionTitle text='Forgot Password?' />
+			<div className='flex justify-center flex-wrap items-center px-4 md:px-8 py-12 mt-10'>
+				<div className='w-full md:w-1/2 lg:pr-12 mb-6 md:mb-0'>
 					<img
 						className='w-full rounded-2xl'
 						src={lock}
 						alt='key'
 					/>
 				</div>
-				<div className='w-full md:w-1/2 lg:ml-20 ml-4'>
+				<div className='w-full md:w-1/2'>
 					<form onSubmit={handleSubmit}>
 						<input
 							className='mb-4 md:mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out'
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
 							<p>
 								Don't have an account yet?{" "}
 								<Link
-									to='signUp'
+									to='/signUp'
 									className='text-red-600 hover:text-red-700 transition duration-200 ease-in-out mr-1'>
 									Register
 								</Link>
